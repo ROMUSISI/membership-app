@@ -1,0 +1,242 @@
+PROPOSED TASO MEMBERSHIP FULL STACK MODERN WEB APPLICATION
+PROJECT OUTLINE
+
+Proposed app name: MyTASO
+Languages: Javascript, Typescript, jsx, html, css, sql
+Front-end (User interface) : React JS
+Back-end (Server) : Express JS
+Database: Mysql
+Development server for Front end: React/Vite
+Development environment for the server: Node
+Development time: 20 days (Working 8 hours a day)
+Hosting: AWS, other options 
+Developer: Musisi Ronald
+Key people: Edmund Tayebwa, Nagawa Rhoda, Ssegirinya Duncan,
+
+Purpose: 
+	To streamline collection of membership subscription
+	across all TASO centers/Projects
+	
+	To enable quick access to data about TASO membership
+	by different stake holders anytime anywhere
+
+	To improve data utilization informing membership mobilization
+	drives
+
+INTERGRATION WITH EXISTING RESOURCES: ? A clickable button/link on the taso website/dynamics
+
+TABLES
+
+1. User  
+
+  id
+  unitId
+  userName
+  staffId
+  staffName
+  password
+  deleted (true/false)
+  lastModifiedBy
+  timeLastModified
+
+
+2. Members
+
+  id
+  unitId
+  userId
+  uniqueMemberId
+  memberName
+  dob
+  country
+  district
+  subcounty
+  parish
+  cell
+  dateCreated
+  timeCreated
+  status (active, inactive, partially paid)
+  phone1
+  phone2
+  emailAddress
+  deleted (true/false)
+  lastModifiedBy
+  timeLastModified
+
+3. subscription
+
+  id
+  memberId
+  userId
+  datePaid
+  timePaid
+  yearSubscribed
+  category
+  amountPaid
+  balance
+  deleted (true/false)
+  lastModifiedBy
+  timeLastModified
+
+4. category
+
+  id (bronze, pewter, platnum, gold, etc)
+  amount (corresponding to each id)
+
+5. unit
+
+  id (masindi, gulu, mulago, etc)
+
+6. country
+
+  id (uganda, kenya, etc)
+
+7. district
+  
+  id (masindi, kampala, etc)
+
+8. userRole
+  id (systemAdmin, director, headOfUnit, hod, user)
+  
+   
+
+USER INTERFACES
+
+1. UserForm.jsx
+
+	this form is used to create/update users
+	the users have varying authorizations/roles
+	users can only be created by;
+		1. systemAdmin (Developer, IT)
+		2. director (All directors, Senior technical advisors)
+		3. unitHead (CPM, PM)
+		4. hod (HOD)
+
+	a user can belong to any of the following categories
+		1. systemAdmin (Software engineer, Organization IT)
+		2. director
+		3. unitHead (Head of center or project eg. CPM)
+		4. hod (Heads of departments eg MSTL)
+		5. user (Any other system user)
+	
+	the system admins will be added during programming
+	not using the userForm
+	
+	The system admins will add the directors and heads of units
+		but can also add any category of user
+
+	The directors will add the heads of units
+		but can also add any category of user
+		below them
+	
+	The heads of units will then add the admins
+		but can also add users
+
+	The admins will then add as many users as they deem necessary
+
+  	THE USERS CAN NOT ADD ANYBODY AND THEY SHOULD NEVER ACCESS THE
+	UserForm.
+
+	COMPONENT STRUCTURE
+
+		A form with reusable components corresponding to the
+			user table
+
+2. MemberForm.jsx
+	this form component will be used to create and update members
+
+	any user can create a member regardless of their role
+	any user who created a member can edit and delete the member
+	within one hour of creating that member
+	
+	only hods and above can edit or delete a member after
+	one hour of creating the member
+	
+	COMPONENT STRUCTURE
+
+		A form with reusable components corresponding to the
+			member table structure.
+
+3. SubscriptionForm.jsx
+		
+	Form component used to record/edit member subscriptions
+	It will correspond to data in the subscription table
+	Any user can record a subscription
+	only the hod and above can edit or delete a subscription
+
+4. LoginPage.jsx
+
+	This will contain a login form, taso log 
+	and slides of beautiful images
+	it will correspond to the home route
+
+5. passwordUpdate.jsx
+
+	Component to allow any user set a new password
+
+6. AllMembersView.jsx
+
+	Component to display all members in a list
+	
+	AUTHORIZATION 
+	HeadOfUnit and below: Only unit members
+	Director and above:  ALL Members from all units
+
+7. OneMemberView.jsx
+
+	Will display one particular member with all details
+	Will be rendered when a user selects a member from list
+	Will have a delete button, edit button for everyone 
+		within one hour of creating a member but after,
+		the two buttons will be available to only HODs
+		and above
+		will also have a button for viewing subscription hx
+
+8. AllSubscriptionsView.jsx
+
+	Will display all subscriptions that have ever been made
+
+	Authorization
+	
+		Only HODs
+		HeadsOfUnits and Below: Only their units
+		Directors and above: All data
+
+	Structure
+		List of subscritions
+		Filters
+
+9. OneSubscriptionView.jsx
+
+	Displays details of one subscription
+	will be rendered when a user selects a subscription from 
+		a list of all subscriptions or from a list of
+		a member's subscription history
+
+10. MemberSubscriptionHistory.jsx
+
+	Displays the subscription history of a particular member
+
+	
+	
+	
+	
+
+
+
+
+	
+
+
+		
+	
+
+
+
+	
+	
+	
+
+
+
+
